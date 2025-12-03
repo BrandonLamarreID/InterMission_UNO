@@ -1,9 +1,11 @@
 /**
- * SYST 17796 Project Base code.
- * Students can modify and extend to implement their game.
- * Add your name as an author and the date!
+ * SYST 17796 Intermission Uno Project
+ * Brandon Lamarre 2-12-2025
  */
 package ca.sheridancollege.project;
+
+
+
 
 /**
  * A class to be used as the base Card class for the project. Must be general enough to be instantiated for any Card
@@ -11,15 +13,23 @@ package ca.sheridancollege.project;
  *
  * @author dancye
  */
-public abstract class Card {
-    //default modifier for child classes
+public class Card {
+    private String colour; //card's colour value
+    private int value; //card's value value
 
-    /**
-     * Students should implement this method for their specific children classes
-     *
-     * @return a String representation of a card. Could be an UNO card, a regular playing card etc.
-     */
-    @Override
-    public abstract String toString();
+    public void setValue(int setter){ //sets the card's value
+        this.value=setter; 
+    }
 
+    public int getValue() { //returns the card's value
+        return value;
+    }
+
+    public void setColour(String setter){ //sets the card's colour
+        this.colour=setter;
+    }
+
+    public String getColour() { //returns the card's colour
+        return colour;
+    }
 }
