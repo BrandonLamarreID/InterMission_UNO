@@ -1,13 +1,11 @@
 /**
- * SYST 17796 Project Base code.
- * Students can modify and extend to implement their game.
- * Add your name as an author and the date!
+ * SYST 17796 Intermission Uno Project
+ * Brandon Lamarre 2-12-2025
  */
 package ca.sheridancollege.project;
 
 import java.util.ArrayList;
 import java.util.Collections;
-
 /**
  * A concrete class that represents any grouping of cards for a Game. HINT, you might want to subclass this more than
  * once. The group of cards has a maximum size attribute which is flexible for reuse.
@@ -16,32 +14,75 @@ import java.util.Collections;
  * @author Paul Bonenfant Jan 2020
  */
 public class GroupOfCards {
-
+    
     //The group of cards, stored in an ArrayList
-    private ArrayList<Card> cards;
+    private ArrayList<Card> cards = new ArrayList<>();
+    private ArrayList<Card> tempcards = new ArrayList<>(); //temporary group of cards stored within arraylist
     private int size;//the size of the grouping
+    private int[] validNumbers = {0,1,2,3,4,5,6,7,8,9}; //valid numbers for first pass
+    private int[] validNumbers2 = {1,2,3,4,5,6,7,8,9}; //valid numbers for second pass
+    private String[] validColours = {"Red","Blue","Green","Yellow"}; //valid colours for cards
 
-    public GroupOfCards(int size) {
+    public GroupOfCards(int size) { 
         this.size = size;
     }
 
-    /**
-     * A method that will get the group of cards as an ArrayList
-     *
-     * @return the group of cards.
-     */
-    public ArrayList<Card> getCards() {
-        return cards;
+    public int getRemainingSize(){
+        return cards.size();
+    }
+    public Card getCard(){  //get card at bottom of pile
+        return cards.get(0);
+    }
+    public Card getLastCard(){ //get card on top of pile
+        return cards.getLast();
+    }
+    public void removeCard(){ //remove card from pile
+        cards.removeFirst();
     }
 
-    public void shuffle() {
+    public void setCards(){ //initialize inactive card pile
+        for (String c :validColours){ //iterate through colours
+            for (int n :validNumbers){ //iterate through numbers
+                Card card = new Card(); //make new card
+                card.setColour(c); //set colour
+                card.setValue(n); //set value
+                this.tempcards.add(card); //add to temp array
+            }
+            for (int n :validNumbers2){ //second pass for number iteration
+                Card card = new Card();
+                card.setColour(c);
+                card.setValue(n);
+                this.tempcards.add(card);
+            }
+        }
+    }
+    public void addCards(){ //add cards from temp array to inactive pile
+        shuffletemp();
+        for (int i = 0; i < size; i++){
+            this.cards.add(this.tempcards.get(i));
+        }
+    }
+    public void addCardsFrom(GroupOfCards in){ //add cards from input
+        for (int i = 0; i <= 60; i++){
+            this.cards.add(in.cards.get(i));
+        }
+        shuffle(); //shuffle deck
+    }
+    public void addCard(Card card){ //add card to pile from input
+        this.cards.add(card);
+    }
+
+    public void shuffle() { //shuffle main array
         Collections.shuffle(cards);
+    }
+    public void shuffletemp() { //shuffle temp array
+        Collections.shuffle(tempcards);
     }
 
     /**
      * @return the size of the group of cards
      */
-    public int getSize() {
+    public int getSize() { 
         return size;
     }
 
