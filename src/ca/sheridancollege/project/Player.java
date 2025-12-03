@@ -21,6 +21,7 @@ public class Player {
     private int id; //card ID initializer
     private int name; //the unique name for this player
     private Random randy = new Random();
+    private int roboid=0;
 
     /**
      * A constructor that allows you to set the player's unique ID
@@ -66,7 +67,6 @@ public class Player {
     }
     public Card aiPlayCard(Card active){ //opponent play card
         int tf = 0;
-        int roboid=0;
         while (tf==0){
             roboid = randy.nextInt(hand.size()); //get random ID within the opponent's hand
             tf=manager.roboPlaycard(hand.get(roboid),active); //check if card selected is valid, if no, repeat
@@ -86,6 +86,9 @@ public class Player {
     }
     public int getId(){ //return card ID
         return id;
+    }
+    public int getRoboId(){ //returns card ID for Opponent
+        return roboid; //this is seperate to make generation of random numbers easier without adjusting the main card ID for the file
     }
 
     /**
