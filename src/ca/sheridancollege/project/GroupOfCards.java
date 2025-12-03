@@ -27,11 +27,11 @@ public class GroupOfCards {
         this.size = size;
     }
 
-    public int getRemainingSize(){
+    public int getRemainingSize(){ //returns remaining size of active deck
         return cards.size();
     }
-    public Card getCard(){  //get card at bottom of pile
-        return cards.get(0);
+    public Card getCard(int i){  //get card at bottom of pile
+        return cards.get(i);
     }
     public Card getLastCard(){ //get card on top of pile
         return cards.getLast();
