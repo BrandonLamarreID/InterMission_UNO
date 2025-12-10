@@ -32,4 +32,14 @@ public class Card {
     public String getColour() { //returns the card's colour
         return colour;
     }
+    public enum CardType{
+        NORMAL,PLUS_TWO,WILD
+    }
+    private CardType type;
+    public CardType getType(){
+        return type;
+    }
+    public void setType(CardType type){
+        this.type = type;
+    }
 }

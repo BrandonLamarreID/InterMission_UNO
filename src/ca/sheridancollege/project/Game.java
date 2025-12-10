@@ -4,8 +4,11 @@
  */
 package ca.sheridancollege.project;
 
+import static ca.sheridancollege.project.Card.CardType.PLUS_TWO;
+import static ca.sheridancollege.project.Card.CardType.WILD;
 import java.util.ArrayList;
 import java.util.Scanner;
+
 
 /**
  * The class that models your game. You should create a more specific child of this class and instantiate the methods
@@ -243,7 +246,37 @@ public class Game {
         else{
             System.out.println("Please try entering your command again."); //edgecase if you dont put the right command in
         }
-        
+       
+        }
+     public void applyCardEffect(Card card, Player nextPlayer, GroupOfCards deck) {
+    switch (card.getType()) {
+        case PLUS_TWO:
+            nextPlayer.drawCard(2, deck);   
+            skipNextTurn(nextPlayer);       
+            break;
+
+        case WILD:
+            Player currentPlayer = players.get(cPlayer);
+            String chosenColor = currentPlayer.chooseColor();
+            setCurrentColor(chosenColor);  
+            break;
+
+        default:
+           
+            break;
     }
+}
+// Skip the next player's turn
+private void skipNextTurn(Player player) {
+    
+    cPlayer = (cPlayer + 1) % oppCount;
+    System.out.println(player.getName() + " loses a turn!");
+}
+
+// Set the current active color after a wild card
+private void setCurrentColor(String color) {
+    System.out.println("Color changed to " + color);
+    
+}
 
 }//end class

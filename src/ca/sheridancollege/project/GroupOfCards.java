@@ -39,6 +39,11 @@ public class GroupOfCards {
     public void removeCard(){ //remove card from pile
         cards.removeFirst();
     }
+    public Card drawCard() {
+    Card top = getLastCard();  
+    removeCard();              
+    return top;                
+}
 
     public void setCards(){ //initialize inactive card pile
         for (String c :validColours){ //iterate through colours
@@ -71,6 +76,19 @@ public class GroupOfCards {
     public void addCard(Card card){ //add card to pile from input
         this.cards.add(card);
     }
+    // Skip the next player's turn
+private void skipNextTurn(Player player) {
+    System.out.println(player.getName() + " loses a turn!");
+    // You can increment cPlayer or set a flag here depending on how turns are managed
+}
+
+// Set the current active color after a wild card
+private void setCurrentColor(String color) {
+    System.out.println("Color changed to " + color);
+    // Store chosen color in a field if you want to enforce it
+    // Example: this.activeColor = color;
+}
+
 
     public void shuffle() { //shuffle main array
         Collections.shuffle(cards);

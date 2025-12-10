@@ -22,6 +22,11 @@ public class InputChecker {
         }
         while (true);
     }
+    public boolean isValidColor(String color) {
+    return color.equals("RED") || color.equals("BLUE") ||
+           color.equals("GREEN") || color.equals("YELLOW");
+}
+
 
 
 }

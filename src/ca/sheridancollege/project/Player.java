@@ -91,13 +91,17 @@ public class Player {
         return roboid; //this is seperate to make generation of random numbers easier without adjusting the main card ID for the file
     }
 
-    /**
-     * Ensure that the playerID is unique
-     *
-     * @param name the player name to set
-     */
+    
     public void setName(int name) {
         this.name = name;
+    }
+    public void drawCard(int count, GroupOfCards deck){
+        for(int i = 0; i < count; i++){
+            this.hand.add(deck.drawCard());
+        }
+    }
+    public String chooseColor(){
+        return "RED";       //red is a placeholder or prompt user for input
     }
 
 }
