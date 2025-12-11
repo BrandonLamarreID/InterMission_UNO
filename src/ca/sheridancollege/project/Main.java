@@ -7,7 +7,7 @@ package ca.sheridancollege.project;
 
 public class Main {
     public static void main(String[] args) {
-        Game play = new Game(); //create new game
+        GameM play = new GameM(null); //create new game
         play.play(); //start game
     }
 }
